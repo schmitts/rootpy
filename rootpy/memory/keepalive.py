@@ -12,3 +12,5 @@ def keepalive(nurse, *patients):
     for p in patients:
         log.debug("Keeping {0} alive for {1} lifetime".format(p, nurse))
     KEEPALIVE.setdefault(nurse, set()).update(patients)
+
+    return patients
