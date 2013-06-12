@@ -1280,7 +1280,7 @@ class HistStack(Plottable, NamedObject, QROOT.THStack):
 
         self.sum = sum(self.hists) if self.hists else None
 
-        for h in hists:
+        for h in hists if hists else []:
             self.Add(h)
 
     def __dim__(self):
@@ -1431,9 +1431,8 @@ def FillHistogram(data, *args, **kwargs):
     if 'binning' in kwargs:
         args = autobinning(data, kwargs['binning'])
         del kwargs['binning']
-        
+
     histo = Hist(*args, **kwargs)
     for d in data:
         histo.Fill(d)
     return list(histo.xedgesl()), histo
-
